@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/app_of_control_tasks
+    username: admin
+    password: control
