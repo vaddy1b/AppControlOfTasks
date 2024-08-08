@@ -7,6 +7,14 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Set;
 
+
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "user-tasks-comments-graph",
+                attributeNodes = {@NamedAttributeNode("taskSet"),
+                        @NamedAttributeNode("commentList")}),
+        @NamedEntityGraph(name = "user-only-graph")
+})
+
 @Getter
 @Setter
 @Entity
@@ -24,12 +32,10 @@ public class User {
     @Column(name = "email",unique = true)
     private String email;
 
-
-    //TODO:??
-    @OneToMany(mappedBy = )
+    @OneToMany
     private List<Comment> commentList;
-    //TODO:??
-    @OneToMany(mappedBy = "task")
+
+    @OneToMany
     private Set<Task> taskSet;
 
 }

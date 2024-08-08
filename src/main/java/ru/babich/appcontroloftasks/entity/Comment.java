@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "comment-user-graph",
+                attributeNodes = {@NamedAttributeNode("user")}),
+        @NamedEntityGraph(name = "comment-task-graph",
+                attributeNodes = {@NamedAttributeNode("task")})
+})
 @Getter
 @Setter
 @Entity
@@ -17,6 +23,9 @@ public class Comment {
 
     @Column(name = "text")
     private String text;
+
+    @Column(name = "author")
+    private String author;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;

@@ -7,6 +7,12 @@ import ru.babich.appcontroloftasks.progress.Status;
 
 import java.util.List;
 
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "task-user-graph",
+                attributeNodes = {@NamedAttributeNode("user")}),
+        @NamedEntityGraph(name = "task-comment-graph",
+        attributeNodes = {@NamedAttributeNode("commentList")})
+})
 @Getter
 @Setter
 @Entity
@@ -25,10 +31,15 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
+    @Column(name = "executor")
+    private boolean isExecutor;
+
+    @Column(name="author")
+    private String author;
+
     @ManyToOne(cascade ={ CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REMOVE})
     private User user;
 
-    //TODO:??
     @OneToMany(targetEntity = Comment.class,mappedBy = "task")
     private List<Comment> commentList;
 }
