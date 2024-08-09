@@ -13,7 +13,7 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
 
     Task findTaskByUser(User user);
 
-    Task saveTask(User user);
+    Task saveTask(Task task);
 
     void updateTask(Long id);
 
