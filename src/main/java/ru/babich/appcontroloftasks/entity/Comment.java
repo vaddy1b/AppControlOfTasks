@@ -21,10 +21,10 @@ public class Comment {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "text")
+    @Column(name = "text", nullable = false)
     private String text;
 
-    @Column(name = "author")
+    @Column(name = "author", nullable = false)
     private String author;
 
     @ManyToOne(cascade = CascadeType.ALL)

@@ -11,12 +11,12 @@ import java.util.List;
         @NamedEntityGraph(name = "task-user-graph",
                 attributeNodes = {@NamedAttributeNode("user")}),
         @NamedEntityGraph(name = "task-comment-graph",
-        attributeNodes = {@NamedAttributeNode("commentList")})
+                attributeNodes = {@NamedAttributeNode("commentList")})
 })
 @Getter
 @Setter
 @Entity
-@Table(name="tasks")
+@Table(name = "tasks")
 public class Task {
 
     @Id
@@ -24,22 +24,22 @@ public class Task {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "number",nullable = false)
-    private Long number;
+    @Column(name = "number", nullable = false)
+    private String number;
 
-    @Column(name="priority",nullable = false)
+    @Column(name = "priority", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    @Column(name = "executor")
+    @Column(name = "executor", nullable = false)
     private boolean isExecutor;
 
-    @Column(name="author")
+    @Column(name = "author", nullable = false)
     private String author;
 
-    @ManyToOne(cascade ={ CascadeType.PERSIST,CascadeType.DETACH,CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REMOVE})
     private User user;
 
-    @OneToMany(targetEntity = Comment.class,mappedBy = "task")
+    @OneToMany(targetEntity = Comment.class, mappedBy = "task")
     private List<Comment> commentList;
 }
