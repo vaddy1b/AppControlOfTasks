@@ -14,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, value = "user-tasks-comments-graph")
     List<Task> findAllTasksOfUser(User user);
 
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, value = "user-only-graph")
     List<User> findAll();
 
     User findUserById(Long id);
