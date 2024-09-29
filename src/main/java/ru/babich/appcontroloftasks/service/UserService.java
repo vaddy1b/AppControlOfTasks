@@ -16,8 +16,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<Task> findAllUsersByTask(User user){
-        return userRepository.findAllTasksOfUser(user);
+    public List<Task> findAllUsersByTask(Task task){
+        return userRepository.findAllUsersByTask(task);
     }
 
     public List<User> getAllUsers() {

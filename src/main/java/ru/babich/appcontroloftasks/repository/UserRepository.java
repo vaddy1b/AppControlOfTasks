@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, value = "user-tasks-comments-graph")
-    List<Task> findAllTasksOfUser(User user);
+    List<Task> findAllInfoConnectingToUser(User user);
 
     List<User> findAll();
 
@@ -25,4 +25,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void updateUser(Long id);
 
     void deleteUser(Long id);
+
+    List<Task> findAllUsersByTask(Task task);
 }
